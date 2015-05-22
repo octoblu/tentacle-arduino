@@ -4,6 +4,6 @@ Tentacle::Tentacle () {
 }
 
 int Tentacle::digitalRead(int pin){
-  // analogRead(1);
+  ::digitalRead(1);
   return 1;
 }

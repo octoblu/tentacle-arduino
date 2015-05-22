@@ -12,9 +12,10 @@ TEST(TentacleTest, Constructor) {
 
 TEST(TentacleTest, digitalRead) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
+  EXPECT_CALL(*arduinoMock, digitalRead(1));
   Tentacle tentacle;
   tentacle.digitalRead(1);
-  EXPECT_TRUE(true);
+  releaseArduinoMock();
 }
 
 // //example arduino test
