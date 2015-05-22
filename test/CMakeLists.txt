@@ -1,6 +1,7 @@
 # We need thread support
 find_package(Threads REQUIRED)
 add_subdirectory(lib/gtest)
+add_subdirectory(lib/gmock)
 
 # # Download and install GoogleMock
 # ExternalProject_Add(
