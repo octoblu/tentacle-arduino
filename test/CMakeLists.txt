@@ -1,28 +1,52 @@
-cmake_minimum_required (VERSION 2.8)
-project (tentacle_tests)
-message ("building tests for the TERRIFYING TENTACLE")
-add_subdirectory(${tentacle_tests_SOURCE_DIR}/lib/gtest)
-# Include the gtest library. gtest_SOURCE_DIR is available due to
-# 'project(gtest)' above.
-include_directories(
-  ${gtest_SOURCE_DIR}/include
-  ${gtest_SOURCE_DIR}
-  ${tentacle_SOURCE_DIR}/src
-  ${tentacle_SOURCE_DIR}/include
+# We need thread support
+find_package(Threads REQUIRED)
+
+# Enable ExternalProject CMake module
+include(ExternalProject)
+
+# Download and install GoogleTest
+ExternalProject_Add(
+    gtest
+    URL https://googletest.googlecode.com/files/gtest-1.7.0.zip
+    PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
+    # Disable install step
+    INSTALL_COMMAND ""
 )
 
-##############
-# Unit Tests
-##############
-add_executable(runUnitTests tentacle_unittest.cpp)
+# Create a libgtest target to be used as a dependency by test programs
+add_library(libgtest IMPORTED STATIC GLOBAL)
+add_dependencies(libgtest gtest)
 
-# Standard linking to gtest stuff.
-target_link_libraries(runUnitTests gtest gtest_main)
-target_link_libraries(runUnitTests tentacle)
+# Set gtest properties
+ExternalProject_Get_Property(gtest source_dir binary_dir)
+set_target_properties(libgtest PROPERTIES
+    "IMPORTED_LOCATION" "${binary_dir}/libgtest.a"
+    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+#    "INTERFACE_INCLUDE_DIRECTORIES" "${source_dir}/include"
+)
+# I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
+include_directories("${source_dir}/include")
 
-# Extra linking for the project.
-# target_link_libraries(runUnitTests project1_lib)
+# Download and install GoogleMock
+ExternalProject_Add(
+    gmock
+    URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+    PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gmock
+    # Disable install step
+    INSTALL_COMMAND ""
+)
 
-# This is so you can do 'make test' to see all your tests run, instead of
-# manually running the executable runUnitTests to see those specific tests.
-add_test(tentacle_unittest runUnitTests)
+# Create a libgmock target to be used as a dependency by test programs
+add_library(libgmock IMPORTED STATIC GLOBAL)
+add_dependencies(libgmock gmock)
+
+# Set gmock properties
+ExternalProject_Get_Property(gmock source_dir binary_dir)
+set_target_properties(libgmock PROPERTIES
+    "IMPORTED_LOCATION" "${binary_dir}/libgmock.a"
+    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+    "INTERFACE_INCLUDE_DIRECTORIES" "${source_dir}/include"
+)
+# I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
+# include_directories("${source_dir}/include")
+add_subdirectory(tentacle)
