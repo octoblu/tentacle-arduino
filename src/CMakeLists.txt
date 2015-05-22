@@ -8,6 +8,7 @@ add_library(tentacle STATIC ${SRC})
 target_include_directories(tentacle
     PUBLIC "include"
 )
+set(TENTACLE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include PARENT_SCOPE)
 set_target_properties( tentacle
   PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"

@@ -1,7 +1,9 @@
 #include "tentacle.hpp"
+
 Tentacle::Tentacle () {
 }
 
 int Tentacle::digitalRead(int pin){
-  return 0;
+  // analogRead(1);
+  return 1;
 }
