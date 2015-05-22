@@ -8,7 +8,6 @@ add_subdirectory(src)
 # Testing
 ################################
 if (test)
-  add_subdirectory(lib/gtest)
   enable_testing()
   add_subdirectory(test)
 endif()

@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
+project (tentacle_tests)
 message ("building tests for the TERRIFYING TENTACLE")
+add_subdirectory(${tentacle_tests_SOURCE_DIR}/lib/gtest)
 # Include the gtest library. gtest_SOURCE_DIR is available due to
 # 'project(gtest)' above.
 include_directories(
