@@ -1,13 +1,6 @@
-#cmake
-Makefile
-CMakeCache.txt
-CMakeFiles
-*.cmake
-build/*
-*.o
-*.a
+build
 bin
-test_bin
+dist
 # Compiled Object files
 *.slo
 *.lo
