@@ -1,7 +1,8 @@
 #include "tentacle.hpp"
 
-Tentacle::Tentacle () {
+Tentacle::Tentacle (int pollInterval) {
   this->pins = std::vector<TentaclePin>();
+  this->pollInterval = pollInterval;
 }
 
 int Tentacle::digitalRead(int pin){
