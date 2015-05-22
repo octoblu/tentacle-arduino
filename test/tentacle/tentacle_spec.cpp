@@ -10,23 +10,44 @@ TEST(TentacleTest, Constructor) {
   Tentacle tentacle;
 }
 
-TEST(TentacleTest, digitalRead) {
+TEST(TentacleTest, digitalRead_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, digitalRead(1));
+  EXPECT_CALL(*arduinoMock, digitalRead(1))
+    .WillOnce(Return(LOW));
   Tentacle tentacle;
-  tentacle.digitalRead(1);
+  int pinValue = tentacle.digitalRead(1);
+  EXPECT_EQ(LOW, pinValue);
   releaseArduinoMock();
 }
 
-// //example arduino test
-// TEST(TentacleTest, ArduinoMock) {
-//   ArduinoMock* arduinoMock = arduinoMockInstance();
-//   SerialMock* serialMock = serialMockInstance();
-//   EXPECT_CALL(*arduinoMock, digitalRead(2))
-//     .WillOnce(Return(1));
-//   EXPECT_CALL(*serialMock, println(1, 10));
-//   EXPECT_CALL(*arduinoMock, delay(1));
-//   // loop();
-//   releaseSerialMock();
-//   releaseArduinoMock();
-// }
+
+TEST(TentacleTest, digitalRead_2) {
+  ArduinoMock* arduinoMock = arduinoMockInstance();
+  EXPECT_CALL(*arduinoMock, digitalRead(2))
+    .WillOnce(Return(HIGH));
+  Tentacle tentacle;
+  int pinValue = tentacle.digitalRead(2);
+  EXPECT_EQ(HIGH, pinValue);
+  releaseArduinoMock();
+}
+
+TEST(TentacleTest, analogRead_1) {
+  ArduinoMock* arduinoMock = arduinoMockInstance();
+  EXPECT_CALL(*arduinoMock, analogRead(1))
+    .WillOnce(Return(314));
+  Tentacle tentacle;
+  float pinValue = tentacle.analogRead(1);
+  EXPECT_EQ(314, pinValue);
+  releaseArduinoMock();
+}
+
+
+TEST(TentacleTest, analogRead_2) {
+  ArduinoMock* arduinoMock = arduinoMockInstance();
+  EXPECT_CALL(*arduinoMock, analogRead(2))
+    .WillOnce(Return(5));
+  Tentacle tentacle;
+  int pinValue = tentacle.analogRead(2);
+  EXPECT_EQ(5, pinValue);
+  releaseArduinoMock();
+}

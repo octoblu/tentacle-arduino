@@ -17,4 +17,4 @@ target_link_libraries(tentacleSpec
 )
 
 add_dependencies(tentacleSpec gtest)
-add_test(tentacle_spec tentacleSpec)
+add_test(tentacle_digitalRead tentacleSpec)

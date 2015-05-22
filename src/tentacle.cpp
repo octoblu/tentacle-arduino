@@ -4,6 +4,9 @@ Tentacle::Tentacle () {
 }
 
 int Tentacle::digitalRead(int pin){
-  ::digitalRead(1);
-  return 1;
+  return ::digitalRead(pin);
+}
+
+int Tentacle::analogRead(int pin){
+  return ::analogRead(pin);
 }
