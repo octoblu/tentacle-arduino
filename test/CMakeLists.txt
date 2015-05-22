@@ -12,7 +12,7 @@ include_directories(
 ##############
 # Unit Tests
 ##############
-add_executable(runUnitTests sample1_unittest.cc)
+add_executable(runUnitTests tentacle_unittest.cpp)
 
 # Standard linking to gtest stuff.
 target_link_libraries(runUnitTests gtest gtest_main)
@@ -23,4 +23,4 @@ target_link_libraries(runUnitTests tentacle)
 
 # This is so you can do 'make test' to see all your tests run, instead of
 # manually running the executable runUnitTests to see those specific tests.
-add_test(sample1_unittest runUnitTests)
+add_test(tentacle_unittest runUnitTests)

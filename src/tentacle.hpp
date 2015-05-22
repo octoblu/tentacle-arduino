@@ -1,9 +1,9 @@
-#ifndef The_Tentacle_h
-#define The_Tentacle_h
+#ifndef tentacle_h
+#define tentacle_h
 
-class TheTentacle {
+class Tentacle {
   public:
-    TheTentacle();
+    Tentacle();
     void begin();
     int digitalRead(int pin);
     void digitalWrite(int pin, int value);

@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
 message ("building the TERRIFYING TENTACLE")
 include_directories("/include")
-add_library(tentacle sample1.cc)
+add_library(tentacle tentacle.cpp)
 set_target_properties( tentacle
   PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
