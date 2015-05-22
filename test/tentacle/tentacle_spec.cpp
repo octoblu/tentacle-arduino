@@ -3,7 +3,9 @@
 #include "arduino-mock/Arduino.h"
 #include "arduino-mock/Serial.h"
 
+#include "../../src/tentacle-pin.cpp"
 #include "../../src/tentacle.cpp"
+
 
 using ::testing::Return;
 TEST(TentacleTest, Constructor) {
@@ -49,5 +51,20 @@ TEST(TentacleTest, analogRead_2) {
   Tentacle tentacle;
   int pinValue = tentacle.analogRead(2);
   EXPECT_EQ(5, pinValue);
+  releaseArduinoMock();
+}
+
+TEST(TentacleTest, config_1) {
+  ArduinoMock* arduinoMock = arduinoMockInstance();
+  EXPECT_CALL(*arduinoMock, pinMode(1, OUTPUT));
+  EXPECT_CALL(*arduinoMock, pinMode(2, INPUT));
+  Tentacle tentacle;
+
+  auto tentaclePins = std::vector<TentaclePin>({
+    TentaclePin(2, INPUT),
+    TentaclePin(1, OUTPUT)
+  });
+
+  tentacle.configurePins(tentaclePins);
   releaseArduinoMock();
 }
