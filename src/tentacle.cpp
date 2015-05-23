@@ -1,8 +1,7 @@
 #include "tentacle.hpp"
 
-Tentacle::Tentacle (int pollInterval) {
+Tentacle::Tentacle () {
   this->pins = std::vector<TentaclePin>();
-  this->pollInterval = pollInterval;
 }
 
 int Tentacle::digitalRead(int pin){
@@ -18,4 +17,12 @@ void Tentacle::configurePins(std::vector<TentaclePin> pins) {
     pinMode(pin.getPin(), pin.getMode());
   }
   this->pins = pins;
+}
+
+void Tentacle::subscribeToPin(int pin, PinChangeListener listener) {
+  listener.pinChange(1);
+}
+
+void Tentacle::tick() {
+  digitalRead(1);
 }

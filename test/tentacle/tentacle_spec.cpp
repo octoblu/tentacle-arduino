@@ -5,7 +5,7 @@
 
 #include "../../src/tentacle-pin.cpp"
 #include "../../src/tentacle.cpp"
-
+#include "callback-mocks.cpp"
 
 using ::testing::Return;
 TEST(TentacleTest, Constructor) {
@@ -66,5 +66,18 @@ TEST(TentacleTest, config_1) {
   });
 
   tentacle.configurePins(tentaclePins);
+  releaseArduinoMock();
+}
+
+TEST(TentacleTest, subscribeToPin_1) {
+  ArduinoMock* arduinoMock = arduinoMockInstance();
+  Tentacle tentacle;
+  MockPinChangeListener listener;
+  // listener.pinChange(1);
+  EXPECT_CALL(*arduinoMock, digitalRead(1))
+    .WillOnce(Return(1));
+
+  tentacle.subscribeToPin(1, listener);
+  tentacle.tick();
   releaseArduinoMock();
 }
