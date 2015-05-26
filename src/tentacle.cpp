@@ -1,28 +1,28 @@
 #include "tentacle.hpp"
+#include "pin-config.hpp"
 
-Tentacle::Tentacle () {
-  this->pins = std::vector<TentaclePin>();
-}
-
-int Tentacle::digitalRead(int pin){
-  return ::digitalRead(pin);
-}
-
-int Tentacle::analogRead(int pin){
-  return ::analogRead(pin);
-}
-
-void Tentacle::configurePins(std::vector<TentaclePin> pins) {
-  for(auto pin : pins){
-    pinMode(pin.getPin(), pin.getMode());
+namespace tentacle {
+  Tentacle::Tentacle () {
+    this->pinConfigs = std::vector<PinConfig>();
   }
-  this->pins = pins;
-}
 
-void Tentacle::subscribeToPin(int pin, PinChangeListener listener) {
-  listener.pinChange(1);
-}
+  void Tentacle::configurePins(std::vector<PinConfig> pins) {
+    for(auto pin : pins) {
+      pinMode(pin.getPin(), pin.getMode());
+    }
 
-void Tentacle::tick() {
-  digitalRead(1);
+    this->pinConfigs = pins;
+  }
+
+  void Tentacle::digitalWrite(int pin, int value){
+    ::digitalWrite(pin, value);
+  }
+
+  void Tentacle::analogWrite(int pin, int value){
+    ::analogWrite(pin, value);
+  }
+
+  std::vector<Pin> Tentacle::getState() {
+    digitalRead(1);
+  }
 }

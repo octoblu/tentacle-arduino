@@ -3,54 +3,50 @@
 #include "arduino-mock/Arduino.h"
 #include "arduino-mock/Serial.h"
 
-#include "../../src/tentacle-pin.cpp"
+#include "../../src/pin-config.cpp"
 #include "../../src/tentacle.cpp"
-#include "callback-mocks.cpp"
+
 
 using ::testing::Return;
+using namespace tentacle;
+
 TEST(TentacleTest, Constructor) {
   Tentacle tentacle;
 }
 
-TEST(TentacleTest, digitalRead_1) {
+TEST(TentacleTest, digitalWrite_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, digitalRead(1))
-    .WillOnce(Return(LOW));
+  EXPECT_CALL(*arduinoMock, digitalWrite(1, 0));
   Tentacle tentacle;
-  int pinValue = tentacle.digitalRead(1);
-  EXPECT_EQ(LOW, pinValue);
+  tentacle.digitalWrite(1, 0);
   releaseArduinoMock();
 }
 
-
-TEST(TentacleTest, digitalRead_2) {
+TEST(TentacleTest, digitalWrite_2) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, digitalRead(2))
-    .WillOnce(Return(HIGH));
+  EXPECT_CALL(*arduinoMock, digitalWrite(2, 1));
+
   Tentacle tentacle;
-  int pinValue = tentacle.digitalRead(2);
-  EXPECT_EQ(HIGH, pinValue);
+  tentacle.digitalWrite(2, 1);
   releaseArduinoMock();
 }
 
-TEST(TentacleTest, analogRead_1) {
+TEST(TentacleTest, analogWrite_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, analogRead(1))
-    .WillOnce(Return(314));
   Tentacle tentacle;
-  float pinValue = tentacle.analogRead(1);
-  EXPECT_EQ(314, pinValue);
+
+  EXPECT_CALL(*arduinoMock, analogWrite(3, 4));
+  tentacle.analogWrite(3, 4);
+
   releaseArduinoMock();
 }
 
-
-TEST(TentacleTest, analogRead_2) {
+TEST(TentacleTest, analogWrite_2) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, analogRead(2))
-    .WillOnce(Return(5));
+  EXPECT_CALL(*arduinoMock, analogWrite(5, 100));
+
   Tentacle tentacle;
-  int pinValue = tentacle.analogRead(2);
-  EXPECT_EQ(5, pinValue);
+  tentacle.analogWrite(5, 100);
   releaseArduinoMock();
 }
 
@@ -60,24 +56,11 @@ TEST(TentacleTest, config_1) {
   EXPECT_CALL(*arduinoMock, pinMode(2, INPUT));
   Tentacle tentacle;
 
-  auto tentaclePins = std::vector<TentaclePin>({
-    TentaclePin(2, INPUT),
-    TentaclePin(1, OUTPUT)
+  auto PinConfigs = std::vector<PinConfig>({
+    PinConfig(2, INPUT),
+    PinConfig(1, OUTPUT)
   });
 
-  tentacle.configurePins(tentaclePins);
-  releaseArduinoMock();
-}
-
-TEST(TentacleTest, subscribeToPin_1) {
-  ArduinoMock* arduinoMock = arduinoMockInstance();
-  Tentacle tentacle;
-  MockPinChangeListener listener;
-  // listener.pinChange(1);
-  EXPECT_CALL(*arduinoMock, digitalRead(1))
-    .WillOnce(Return(1));
-
-  tentacle.subscribeToPin(1, listener);
-  tentacle.tick();
+  tentacle.configurePins(PinConfigs);
   releaseArduinoMock();
 }

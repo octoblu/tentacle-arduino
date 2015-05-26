@@ -1,23 +1,28 @@
 #ifndef tentacle_h
 #define tentacle_h
 
-class PinChangeListener {
-  public:
-    virtual void pinChange(int value);
-};
+namespace tentacle {
 
-class Tentacle {
-  public:
-    Tentacle();
-    void tick();
-    int digitalRead(int pin);
-    void digitalWrite(int pin, int value);
-    int analogRead(int pin);
-    void configurePins(std::vector<TentaclePin> pins);
-    void subscribeToPin(int pin, PinChangeListener);
-  private:
-    std::vector<TentaclePin> pins;
-    int pollInterval;
-};
+  class Pin {
+    public:
+      Pin(int pin, int state=0);
+      int getPin();
+      int getState();
 
+    private:
+      int pin;
+      int state;
+  };
+
+  class Tentacle {
+    public:
+      Tentacle();
+      void configurePins(std::vector<PinConfig> pins);
+      void digitalWrite(int pin, int value);
+      void analogWrite(int pin, int value);
+      std::vector<Pin> getState();
+    private:
+      std::vector<PinConfig> pinConfigs;
+  };
+};
 #endif
