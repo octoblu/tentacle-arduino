@@ -18,5 +18,4 @@ namespace tentacle {
   byte Pin::getState() {
     return state;
   }
-
 }

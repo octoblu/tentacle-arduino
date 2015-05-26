@@ -85,16 +85,24 @@ TEST(TentacleTest, getState_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   Tentacle tentacle;
 
-  auto pins = std::vector<Pin>({
-    Pin(13, OUTPUT)
-  });
+  EXPECT_CALL(*arduinoMock, digitalRead(0)).WillOnce(Return(1));
+  EXPECT_CALL(*arduinoMock, digitalRead(1)).WillOnce(Return(0));
+  EXPECT_CALL(*arduinoMock, digitalRead(2)).WillOnce(Return(0));
+  EXPECT_CALL(*arduinoMock, digitalRead(3)).WillOnce(Return(0));
+  EXPECT_CALL(*arduinoMock, digitalRead(4)).WillOnce(Return(1));
+  EXPECT_CALL(*arduinoMock, digitalRead(5)).WillOnce(Return(0));
+  EXPECT_CALL(*arduinoMock, digitalRead(6)).WillOnce(Return(0));
+  EXPECT_CALL(*arduinoMock, digitalRead(7)).WillOnce(Return(1));
 
-  tentacle.configurePins(pins);
   auto pinStates = tentacle.getState();
-
-  for(auto pin : pinStates) {
-    EXPECT_EQ(pin.getState(), LOW);
-  }
+  EXPECT_EQ(pinStates[0].getState(), 1);
+  EXPECT_EQ(pinStates[1].getState(), 0);
+  EXPECT_EQ(pinStates[2].getState(), 0);
+  EXPECT_EQ(pinStates[3].getState(), 0);
+  EXPECT_EQ(pinStates[4].getState(), 1);
+  EXPECT_EQ(pinStates[5].getState(), 0);
+  EXPECT_EQ(pinStates[6].getState(), 0);
+  EXPECT_EQ(pinStates[7].getState(), 1);
 
   releaseArduinoMock();
 }
