@@ -1,5 +1,4 @@
 #include "tentacle.hpp"
-#include "pin-config.hpp"
 
 namespace tentacle {
   Tentacle::Tentacle () {
@@ -7,6 +6,11 @@ namespace tentacle {
   }
 
   void Tentacle::configurePins(std::vector<PinConfig> pins) {
+
+    for(int i = 0; i < TOTAL_PINS; i++) {
+      pinMode(i, INPUT);
+    }
+
     for(auto pin : pins) {
       pinMode(pin.getPin(), pin.getMode());
     }
@@ -23,6 +27,6 @@ namespace tentacle {
   }
 
   std::vector<Pin> Tentacle::getState() {
-    digitalRead(1);
+    auto pins = new vector<Pin>(TOTAL_PINS);
   }
 }
