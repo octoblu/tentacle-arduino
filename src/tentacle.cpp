@@ -1,21 +1,18 @@
 #include "tentacle.hpp"
 
 namespace tentacle {
-  Tentacle::Tentacle () {
-    this->pinConfigs = std::vector<PinConfig>();
+
+void Tentacle::configurePins(std::vector<Pin> pins) {
+    for(auto pin : pins) {
+      configurePin(pin);
+    }
   }
 
-  void Tentacle::configurePins(std::vector<PinConfig> pins) {
-
-    for(int i = 0; i < TOTAL_PINS; i++) {
-      pinMode(i, INPUT);
+  void Tentacle::configurePin(Pin pin) {
+    pinMode(pin.getPin(), pin.getMode());
+    if(pin.getState() != STATE_UNDEFINED) {
+      digitalWrite(pin.getPin(), pin.getState());
     }
-
-    for(auto pin : pins) {
-      pinMode(pin.getPin(), pin.getMode());
-    }
-
-    this->pinConfigs = pins;
   }
 
   void Tentacle::digitalWrite(int pin, int value){
@@ -27,6 +24,6 @@ namespace tentacle {
   }
 
   std::vector<Pin> Tentacle::getState() {
-    auto pins = new vector<Pin>(TOTAL_PINS);
+    return std::vector<Pin>();
   }
 }

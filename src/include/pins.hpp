@@ -1,6 +1,6 @@
-#ifndef pinconfig_h
-  #define pinconfig_h
-
+#ifndef pin_h
+  #define pin_h
+  #define STATE_UNDEFINED 254
   #ifndef TOTAL_PINS
     #define TOTAL_PINS 22
   #endif
@@ -9,25 +9,16 @@ namespace tentacle {
 
   class Pin {
     public:
-      Pin(int pin, int state=LOW);
-      int getPin();
-      int getState();
+      Pin(byte pin, byte mode=INPUT, byte state=STATE_UNDEFINED);
+      byte getPin();
+      byte getMode();
+      byte getState();
+      void setState( byte state );
 
     private:
-      int pin;
-      int state;
-  };
-
-  class PinConfig {
-    public:
-      PinConfig(int pin, int mode=INPUT );
-      int getPin();
-      int getMode();
-
-    private:
-      PinConfig();
-      int pin;
-      int mode;
+      byte pin;
+      byte state;
+      byte mode;
   };
 }
 

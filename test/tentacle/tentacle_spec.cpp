@@ -53,25 +53,17 @@ TEST(TentacleTest, analogWrite_2) {
 
 TEST(TentacleTest, config_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, pinMode(1, OUTPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(2, INPUT)).Times(2);
-
-  //Yes, this is dumb. I can't figure out how to tell gtest to ignore extra calls.
-  EXPECT_CALL(*arduinoMock, pinMode(0, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(1, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(3, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(4, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(5, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(6, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(7, INPUT));
   Tentacle tentacle;
 
-  auto PinConfigs = std::vector<PinConfig>({
-    PinConfig(2, INPUT),
-    PinConfig(1, OUTPUT)
+  EXPECT_CALL(*arduinoMock, pinMode(1, OUTPUT));
+  EXPECT_CALL(*arduinoMock, pinMode(2, INPUT));
+
+  auto pins = std::vector<Pin>({
+    Pin(2, INPUT),
+    Pin(1, OUTPUT)
   });
 
-  tentacle.configurePins(PinConfigs);
+  tentacle.configurePins(pins);
   releaseArduinoMock();
 }
 
@@ -79,22 +71,13 @@ TEST(TentacleTest, config_2) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   EXPECT_CALL(*arduinoMock, pinMode(5, OUTPUT));
 
-  //Yes, this is dumb. I can't figure out how to tell gtest to ignore extra calls.
-  EXPECT_CALL(*arduinoMock, pinMode(0, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(1, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(2, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(3, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(4, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(5, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(6, INPUT));
-  EXPECT_CALL(*arduinoMock, pinMode(7, INPUT));
   Tentacle tentacle;
 
-  auto PinConfigs = std::vector<PinConfig>({
-    PinConfig(5, OUTPUT)
+  auto pins = std::vector<Pin>({
+    Pin(5, OUTPUT)
   });
 
-  tentacle.configurePins(PinConfigs);
+  tentacle.configurePins(pins);
   releaseArduinoMock();
 }
 
@@ -102,15 +85,15 @@ TEST(TentacleTest, getState_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   Tentacle tentacle;
 
-  auto PinConfigs = std::vector<PinConfig>({
-    PinConfig(13, OUTPUT)
+  auto pins = std::vector<Pin>({
+    Pin(13, OUTPUT)
   });
 
-  tentacle.configurePins(PinConfigs);
+  tentacle.configurePins(pins);
   auto pinStates = tentacle.getState();
 
-  for(PinState pinState : pinStates) {
-    EXPECT_EQ(pinState.getState(), LOW);
+  for(auto pin : pinStates) {
+    EXPECT_EQ(pin.getState(), LOW);
   }
 
   releaseArduinoMock();

@@ -1,28 +1,22 @@
 #include "pins.hpp"
 namespace tentacle {
-  
-  Pin::Pin(int pin, int state) {
-    this->pin = pin; this->state = state;
+
+  Pin::Pin(byte pin, byte mode, byte state) {
+    this->pin = pin;
+    this->mode = mode;
+    this->state = state;
   }
 
-  int Pin::getPin() {
-    return pin;
-  };
-
-  int Pin::getState(){
-    return state;
-  };
-
-
-  PinConfig::PinConfig(int pin, int mode ) {
-    this->pin = pin; this->mode = mode;
-  }
-
-  int PinConfig::getPin() {
+  byte Pin::getPin() {
     return pin;
   }
 
-  int PinConfig::getMode() {
+  byte Pin::getMode(){
     return mode;
   }
+
+  byte Pin::getState() {
+    return state;
+  }
+
 }
