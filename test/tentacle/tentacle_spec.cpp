@@ -4,8 +4,8 @@
 #include "arduino-mock/Serial.h"
 
 #define TOTAL_PINS 8
-#include "../../src/pins.cpp"
-#include "../../src/tentacle.cpp"
+#include "../../pins.cpp"
+#include "../../tentacle.cpp"
 
 
 using ::testing::Return;

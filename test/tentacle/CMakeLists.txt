@@ -1,4 +1,5 @@
 message ("building tests for the TERRIFYING TENTACLE")
+SET(CMAKE_CXX_FLAGS "-std=c++0x")
 include_directories(
   ${GTEST_INCLUDE_DIRS}
   ${GMOCK_INCLUDE_DIRS}

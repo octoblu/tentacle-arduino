@@ -24,7 +24,7 @@ void Tentacle::configurePins(std::vector<Pin> pins) {
   }
 
   std::vector<Pin> Tentacle::getState() {
-    auto pins = std::vector<Pin>();
+    std::vector<Pin> pins = std::vector<Pin>();
 
     for(byte i = 0; i < TOTAL_PINS; i++) {
       byte pinState = digitalRead(i);
