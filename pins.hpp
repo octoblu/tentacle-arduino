@@ -6,6 +6,7 @@
   #endif
 
 namespace tentacle {
+  typedef unsigned char byte;
 
   class Pin {
     public:

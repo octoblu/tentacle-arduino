@@ -1,5 +1,6 @@
-cmake_minimum_required (VERSION 3.2)
+#cmake_minimum_required (VERSION 3.2)
 project (tentacle)
-
+set(CMAKE_CXX_FLAGS "-std=c++11")
+add_library(tentacle tentacle.cpp)
 enable_testing()
 add_subdirectory(test)

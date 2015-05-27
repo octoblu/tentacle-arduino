@@ -3,7 +3,7 @@
 namespace tentacle {
 
 void Tentacle::configurePins(std::vector<Pin> pins) {
-    for(auto pin : pins) {
+    for(Pin pin : pins) {
       configurePin(pin);
     }
   }
