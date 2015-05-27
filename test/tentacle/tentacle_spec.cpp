@@ -7,9 +7,8 @@
 #include "tentacle.hpp"
 
 
-using ::testing::Return;
 using namespace tentacle;
-
+using namespace testing;
 TEST(TentacleTest, Constructor) {
   Tentacle tentacle;
 }
@@ -84,14 +83,17 @@ TEST(TentacleTest, getState_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   Tentacle tentacle;
 
-  EXPECT_CALL(*arduinoMock, digitalRead(0)).WillOnce(Return(1));
-  EXPECT_CALL(*arduinoMock, digitalRead(1)).WillOnce(Return(0));
-  EXPECT_CALL(*arduinoMock, digitalRead(2)).WillOnce(Return(0));
-  EXPECT_CALL(*arduinoMock, digitalRead(3)).WillOnce(Return(0));
-  EXPECT_CALL(*arduinoMock, digitalRead(4)).WillOnce(Return(1));
-  EXPECT_CALL(*arduinoMock, digitalRead(5)).WillOnce(Return(0));
-  EXPECT_CALL(*arduinoMock, digitalRead(6)).WillOnce(Return(0));
-  EXPECT_CALL(*arduinoMock, digitalRead(7)).WillOnce(Return(1));
+  EXPECT_CALL(*arduinoMock, digitalRead(Lt(TOTAL_PINS)))
+    .Times(TOTAL_PINS)
+    .WillOnce(Return(1))
+    .WillOnce(Return(0))
+    .WillOnce(Return(0))
+    .WillOnce(Return(0))
+    .WillOnce(Return(1))
+    .WillOnce(Return(0))
+    .WillOnce(Return(0))
+    .WillOnce(Return(1))
+    .WillRepeatedly(Return(0));
 
   auto pinStates = tentacle.getState();
   EXPECT_EQ(pinStates[0].getState(), 1);
