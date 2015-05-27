@@ -11,7 +11,9 @@ ExternalProject_Add(gmock
 # Specify include dir
 ExternalProject_Get_Property(gmock source_dir)
 set(GMOCK_INCLUDE_DIRS ${source_dir}/include PARENT_SCOPE)
+set_property(GLOBAL PROPERTY GMOCK_INCLUDE_DIRS ${source_dir}/include)
 
 # Specify MainTest's link libraries
 ExternalProject_Get_Property(gmock binary_dir)
 set(GMOCK_LIBS_DIR ${binary_dir} PARENT_SCOPE)
+set_property(GLOBAL PROPERTY GMOCK_LIBS_DIRS ${binary_dir})

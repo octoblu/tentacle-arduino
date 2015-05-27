@@ -3,9 +3,8 @@
 #include "arduino-mock/Arduino.h"
 #include "arduino-mock/Serial.h"
 
-#define TOTAL_PINS 8
-#include "../../pins.cpp"
-#include "../../tentacle.cpp"
+#include "pins.hpp"
+#include "tentacle.hpp"
 
 
 using ::testing::Return;

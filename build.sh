@@ -1,5 +1,5 @@
 #!/bin/sh
 cd build && \
 cmake .. && \
-make && \
+make VERBOSE=1 && \
 ctest -VV

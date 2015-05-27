@@ -11,7 +11,9 @@ ExternalProject_Add(gtest
 # Specify include dir
 ExternalProject_Get_Property(gtest source_dir)
 set(GTEST_INCLUDE_DIRS ${source_dir}/include PARENT_SCOPE)
+set_property(GLOBAL PROPERTY GTEST_INCLUDE_DIRS ${source_dir}/include)
 
 # Specify MainTest's link libraries
 ExternalProject_Get_Property(gtest binary_dir)
 set(GTEST_LIBS_DIR ${binary_dir} PARENT_SCOPE)
+set_property(GLOBAL PROPERTY GTEST_LIBS_DIRS ${binary_dir})
