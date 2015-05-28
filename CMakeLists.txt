@@ -1,7 +1,6 @@
 #cmake_minimum_required (VERSION 3.2)
 project (tentacle)
 set(CMAKE_CXX_FLAGS "-std=c++11")
-set(ENABLE_EXPORTS true)
 add_subdirectory(test)
 get_property(ARDUINO_MOCK_INCLUDE_DIRS GLOBAL PROPERTY ARDUINO_MOCK_INCLUDE_DIRS)
 get_property(GMOCK_INCLUDE_DIRS GLOBAL PROPERTY GMOCK_INCLUDE_DIRS)
@@ -11,4 +10,5 @@ include_directories(.
   ${GMOCK_INCLUDE_DIRS}
   ${GTEST_INCLUDE_DIRS})
 add_library(tentacle pins.cpp tentacle.cpp)
+set_target_properties(tentacle PROPERTIES ENABLE_EXPORTS true)
 enable_testing()
