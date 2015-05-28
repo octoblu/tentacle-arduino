@@ -9,5 +9,5 @@ include_directories(.
   ${ARDUINO_MOCK_INCLUDE_DIRS}
   ${GMOCK_INCLUDE_DIRS}
   ${GTEST_INCLUDE_DIRS})
-add_library(tentacle tentacle.cpp pins.cpp)
+add_library(tentacle pins.cpp tentacle.cpp)
 enable_testing()
