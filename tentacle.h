@@ -14,7 +14,7 @@ namespace tentacle {
       void configurePin(Pin pin);
       void digitalWrite(int pin, int value);
       void analogWrite(int pin, int value);
-      std::vector<Pin> getState();
+      std::vector<Pin> getValue();
   };
 };
 #endif

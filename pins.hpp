@@ -13,9 +13,9 @@ namespace tentacle {
   class Pin {
     public:
       Pin(byte pin, byte mode=INPUT, byte state=STATE_UNDEFINED);
-      byte getPin();
+      byte getNumber();
       byte getMode();
-      byte getState();
+      byte getValue();
       void setState( byte state );
 
     private:

@@ -7,7 +7,7 @@ namespace tentacle {
     this->state = state;
   }
 
-  byte Pin::getPin() {
+  byte Pin::getNumber() {
     return pin;
   }
 
@@ -15,7 +15,7 @@ namespace tentacle {
     return mode;
   }
 
-  byte Pin::getState() {
+  byte Pin::getValue() {
     return state;
   }
 }

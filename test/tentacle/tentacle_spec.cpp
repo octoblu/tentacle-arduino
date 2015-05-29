@@ -79,7 +79,7 @@ TEST(TentacleTest, config_2) {
   releaseArduinoMock();
 }
 
-TEST(TentacleTest, getState_1) {
+TEST(TentacleTest, getValue_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   Tentacle tentacle;
 
@@ -95,15 +95,15 @@ TEST(TentacleTest, getState_1) {
     .WillOnce(Return(1))
     .WillRepeatedly(Return(0));
 
-  auto pinStates = tentacle.getState();
-  EXPECT_EQ(pinStates[0].getState(), 1);
-  EXPECT_EQ(pinStates[1].getState(), 0);
-  EXPECT_EQ(pinStates[2].getState(), 0);
-  EXPECT_EQ(pinStates[3].getState(), 0);
-  EXPECT_EQ(pinStates[4].getState(), 1);
-  EXPECT_EQ(pinStates[5].getState(), 0);
-  EXPECT_EQ(pinStates[6].getState(), 0);
-  EXPECT_EQ(pinStates[7].getState(), 1);
+  auto pinStates = tentacle.getValue();
+  EXPECT_EQ(pinStates[0].getValue(), 1);
+  EXPECT_EQ(pinStates[1].getValue(), 0);
+  EXPECT_EQ(pinStates[2].getValue(), 0);
+  EXPECT_EQ(pinStates[3].getValue(), 0);
+  EXPECT_EQ(pinStates[4].getValue(), 1);
+  EXPECT_EQ(pinStates[5].getValue(), 0);
+  EXPECT_EQ(pinStates[6].getValue(), 0);
+  EXPECT_EQ(pinStates[7].getValue(), 1);
 
   releaseArduinoMock();
 }
