@@ -4,7 +4,7 @@
 #include "arduino-mock/Serial.h"
 
 #include "pins.hpp"
-#include "tentacle.hpp"
+#include "tentacle.h"
 
 
 using namespace tentacle;
