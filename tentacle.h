@@ -1,7 +1,7 @@
 #ifndef tentacle_h
 #define tentacle_h
 
-#include "arduino-extern.hpp"
+#include "Arduino.h"
 #include "pins.hpp"
 #include <vector>
 
