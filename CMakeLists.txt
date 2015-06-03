@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "-std=c++98")
 set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build")
-file(DOWNLOAD
- "https://raw.githubusercontent.com/octoblu/cmake-external-project-utils/master/external-project-utils.cmake"
- "${CMAKE_MODULE_PATH}/external-project-utils.cmake"
-)
+# file(DOWNLOAD
+#  "https://raw.githubusercontent.com/octoblu/cmake-external-project-utils/master/external-project-utils.cmake"
+#  "${CMAKE_MODULE_PATH}/external-project-utils.cmake"
+# )
 
 include(external-project-utils)
 
@@ -19,6 +19,7 @@ getExternalProject("arduino-mock" "https://github.com/octoblu/arduino-mock/archi
 include_directories( tentacle
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
 set_target_properties(tentacle PROPERTIES ENABLE_EXPORTS true)
 
 linkExternalProject(tentacle "gtest")
