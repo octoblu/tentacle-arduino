@@ -8,9 +8,9 @@ add_executable(tentacle-test ${SRCS})
 linkExternalProject(tentacle-test "gtest")
 linkExternalProject(tentacle-test "gmock")
 linkExternalProject(tentacle-test "arduino-mock")
+linkExternalProject(tentacle-test "tentacle")
 
 target_link_libraries(tentacle-test
-    tentacle
     ${GTEST_LIB_DIR}/libgtest_main.a
 )
 

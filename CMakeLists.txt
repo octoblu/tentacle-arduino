@@ -20,6 +20,8 @@ include_directories( tentacle
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+set(TENTACLE_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
+
 set_target_properties(tentacle PROPERTIES ENABLE_EXPORTS true)
 
 linkExternalProject(tentacle "gtest")
