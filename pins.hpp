@@ -1,7 +1,7 @@
 #ifndef pin_h
 #define pin_h
 
-#include "Arduino.h"
+#include "arduino-mocks.h"
 
 #define STATE_UNDEFINED 254
 #ifndef TOTAL_PINS

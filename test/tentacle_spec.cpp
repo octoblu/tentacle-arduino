@@ -1,6 +1,6 @@
 #include <limits.h>
 #include "gtest/gtest.h"
-#include "Arduino.h"
+#include "arduino-mocks.h"
 #include "Serial.h"
 
 #include "pins.hpp"

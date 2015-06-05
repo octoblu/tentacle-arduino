@@ -1,7 +1,7 @@
 #ifndef tentacle_h
 #define tentacle_h
 
-#include "Arduino.h"
+#include "arduino-mocks.h"
 #include "pins.hpp"
 #include <vector>
 
