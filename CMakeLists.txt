@@ -11,7 +11,7 @@ include(external-project-utils)
 project (tentacle)
 
 add_library(tentacle STATIC pins.cpp tentacle.cpp)
-
+add_definitions(-DUSE_MOCKS)
 getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
 getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
 getExternalProject("arduino-mock" "https://github.com/octoblu/arduino-mock/archive/master.zip")
