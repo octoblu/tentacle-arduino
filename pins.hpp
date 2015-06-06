@@ -1,8 +1,8 @@
 #ifndef pin_h
 #define pin_h
+typedef unsigned char byte;
 
-#include "arduino-mocks.h"
-
+#define INPUT 0
 #define STATE_UNDEFINED 254
 #ifndef TOTAL_PINS
 #define TOTAL_PINS 22
