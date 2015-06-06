@@ -1,15 +1,18 @@
 #ifndef pin_h
 #define pin_h
-typedef unsigned char byte;
 
+#ifndef INPUT
 #define INPUT 0
+#endif
+
 #define STATE_UNDEFINED 254
 #ifndef TOTAL_PINS
 #define TOTAL_PINS 22
 #endif
 
+typedef unsigned char byte;
 namespace tentacle {
-
+  //Todo: Pins should have an enum for mode and state, so we're not dependent on Arduino
   class Pin {
     public:
       Pin(byte pin, byte mode=INPUT, byte state=STATE_UNDEFINED);
