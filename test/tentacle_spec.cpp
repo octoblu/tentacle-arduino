@@ -9,6 +9,7 @@
 
 using namespace tentacle;
 using namespace testing;
+
 TEST(TentacleTest, Constructor) {
   Tentacle tentacle;
 }
@@ -83,8 +84,8 @@ TEST(TentacleTest, getValue_1) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   Tentacle tentacle;
 
-  EXPECT_CALL(*arduinoMock, digitalRead(Lt(TOTAL_PINS)))
-    .Times(TOTAL_PINS)
+  EXPECT_CALL(*arduinoMock, digitalRead(Lt(NUM_DIGITAL_PINS)))
+    .Times(NUM_DIGITAL_PINS)
     .WillOnce(Return(1))
     .WillOnce(Return(0))
     .WillOnce(Return(0))

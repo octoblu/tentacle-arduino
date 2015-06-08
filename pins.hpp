@@ -6,9 +6,6 @@
 #endif
 
 #define STATE_UNDEFINED 254
-#ifndef TOTAL_PINS
-#define TOTAL_PINS 22
-#endif
 
 typedef unsigned char byte;
 namespace tentacle {

@@ -27,7 +27,7 @@ void Tentacle::configurePins(std::vector<Pin> pins) {
   std::vector<Pin> Tentacle::getValue() {
     std::vector<Pin> pins = std::vector<Pin>();
 
-    for(byte i = 0; i < TOTAL_PINS; i++) {
+    for(byte i = 0; i < NUM_DIGITAL_PINS; i++) {
       byte pinState = digitalRead(i);
       pins.push_back( Pin(i, 0, pinState));
     }
