@@ -8,18 +8,17 @@
 //This will break everything, with no indication of why this is happening. Lovely.
 
 #include <vector>
-#include "pins.hpp"
 #include "Arduino.h"
-namespace tentacle {
+#include "pins.hpp"
 
-  class Tentacle {
-    public:
-      // Tentacle();
-      void configurePins(std::vector<Pin> pins);
-      void configurePin(Pin pin);
-      void digitalWrite(int pin, int value);
-      void analogWrite(int pin, int value);
-      std::vector<Pin> getValue();
-  };
+class Tentacle {
+  public:
+    // Tentacle();
+    void configurePins(std::vector<Pin> pins);
+    void configurePin(Pin pin);
+    void digitalWrite(int pin, int value);
+    void analogWrite(int pin, int value);
+    std::vector<Pin> getValue();
 };
+
 #endif

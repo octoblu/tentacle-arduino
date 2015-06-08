@@ -7,7 +7,6 @@
 #include "tentacle.h"
 
 
-using namespace tentacle;
 using namespace testing;
 
 TEST(TentacleTest, Constructor) {
