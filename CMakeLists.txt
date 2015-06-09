@@ -8,24 +8,26 @@ file(DOWNLOAD
 
 include(external-project-utils)
 
-project (tentacle)
+project (tentacle-arduino)
 
-add_library(tentacle STATIC pins.cpp tentacle.cpp)
+add_library(tentacle-arduino STATIC tentacle-arduino.cpp)
+getExternalProject("tentacle" "https://github.com/octoblu/the-tentacle/archive/master.zip")
 getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
 getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
 getExternalProject("arduino-mock" "https://github.com/octoblu/arduino-mock/archive/master.zip")
 
-include_directories( tentacle
+include_directories( tentacle-arduino
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 set(TENTACLE_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
 
-set_target_properties(tentacle PROPERTIES ENABLE_EXPORTS true)
+set_target_properties(tentacle-arduino PROPERTIES ENABLE_EXPORTS true)
 
-linkExternalProject(tentacle "gtest")
-linkExternalProject(tentacle "gmock")
-linkExternalProject(tentacle "arduino-mock")
+linkExternalProject(tentacle-arduino "tentacle")
+linkExternalProject(tentacle-arduino "gtest")
+linkExternalProject(tentacle-arduino "gmock")
+linkExternalProject(tentacle-arduino "arduino-mock")
 
 option(test "Build all tests." OFF)
 
