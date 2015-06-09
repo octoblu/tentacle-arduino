@@ -28,10 +28,3 @@ linkExternalProject(tentacle-arduino "tentacle")
 linkExternalProject(tentacle-arduino "gtest")
 linkExternalProject(tentacle-arduino "gmock")
 linkExternalProject(tentacle-arduino "arduino-mock")
-
-option(test "Build all tests." OFF)
-
-if (test)
-  enable_testing()
-  add_subdirectory(test)
-endif()

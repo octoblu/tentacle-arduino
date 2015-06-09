@@ -1,5 +1,7 @@
-#ifndef tentacle_h
-#define tentacle_h
+#include "tentacle.h"
+
+#ifndef tentacle_arduino_h
+#define tentacle_arduino_h
 
 //guess what? the order of these includes really, really matter, because
 //the stdlib for Arduino undefines abs(), then defines it's own. So you have
@@ -8,16 +10,16 @@
 //This will break everything, with no indication of why this is happening. Lovely.
 
 #include <vector>
-#include "Arduino.h"
 #include "pins.hpp"
 
-class Tentacle {
+class TentacleArduino : public Tentacle {
   public:
-    // Tentacle();
-    void configurePins(std::vector<Pin> pins);
-    void configurePin(Pin pin);
+    int getNumberOfPins();
+    void setMode(Pin pin);
     void digitalWrite(int pin, int value);
     void analogWrite(int pin, int value);
+    bool digitalRead(int pin);
+    int analogRead(int pin);
     std::vector<Pin> getValue();
 };
 
