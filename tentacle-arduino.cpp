@@ -1,8 +1,12 @@
 #include "tentacle-arduino.h"
 #include "Arduino.h"
 
-int TentacleArduino::getNumberOfPins() {
-  return NUM_DIGITAL_PINS;
+TentacleArduino::TentacleArduino() {
+  numPins = NUM_DIGITAL_PINS;
+  config = new Pin[numPins];
+  for(int i = 0; i < numPins; i++) {
+    config[i] = Pin(i);
+  }
 }
 
 void TentacleArduino::setMode(Pin pin){

@@ -14,7 +14,7 @@
 
 class TentacleArduino : public Tentacle {
   public:
-    int getNumberOfPins();
+    TentacleArduino();
     void setMode(Pin pin);
     void digitalWrite(int pin, int value);
     void analogWrite(int pin, int value);
