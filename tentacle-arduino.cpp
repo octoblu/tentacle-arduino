@@ -1,11 +1,12 @@
 #include "tentacle-arduino.h"
 #include "Arduino.h"
+#include <vector>
 
 TentacleArduino::TentacleArduino() {
   numPins = NUM_DIGITAL_PINS;
-  config = new Pin[numPins];
+
   for(int i = 0; i < numPins; i++) {
-    config[i] = Pin(i);
+    config.push_back(Pin(i));
   }
 }
 
