@@ -4,10 +4,6 @@
 
 TentacleArduino::TentacleArduino() {
   numPins = NUM_DIGITAL_PINS;
-  // for(int i = 0; i < numPins; i++) {
-  //   config.push_back(Pin(i));
-  // }
-  // Serial.flush();
 }
 
 void TentacleArduino::setMode(Pin pin){
