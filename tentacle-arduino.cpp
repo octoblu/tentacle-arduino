@@ -1,6 +1,5 @@
 #include "tentacle-arduino.h"
 #include "Arduino.h"
-#include <vector>
 
 TentacleArduino::TentacleArduino() {
   numPins = NUM_DIGITAL_PINS;
