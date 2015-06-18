@@ -8,11 +8,11 @@
 class TentacleArduino : public Tentacle {
   public:
     TentacleArduino();
-    void setMode(const Pin &pin) const;
-    void digitalWrite(const int pin, const int value);
-    void analogWrite(const int pin, const int value);
-    bool digitalRead(const int pin);
-    int analogRead(const int pin);
+    void setMode(Pin pin);
+    void digitalWrite(int pin, int value);
+    void analogWrite(int pin, int value);
+    bool digitalRead(int pin);
+    int analogRead(int pin);
 };
 
 #endif

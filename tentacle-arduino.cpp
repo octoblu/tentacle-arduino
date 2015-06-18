@@ -2,39 +2,40 @@
 #include "Arduino.h"
 
 TentacleArduino::TentacleArduino() {
-  this->setup(NUM_DIGITAL_PINS);
+  numPins = NUM_DIGITAL_PINS;
+  pins = new Pin[numPins];
 }
 
-void TentacleArduino::setMode(const Pin &pin) const {
-  int input_mode = (pin.pullup ? INPUT_PULLUP : INPUT );
+void TentacleArduino::setMode(Pin pin){
+  int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
 
-  switch(pin.action) {
-    case Pin::Action::digitalRead :
-    case Pin::Action::analogRead  :
+  switch(pin.getAction()) {
+    case Pin::digitalRead :
+    case Pin::analogRead  :
     default:
-      ::pinMode(pin.number, input_mode);
+      pinMode(pin.getNumber(), input_mode);
     break;
 
-    case Pin::Action::digitalWrite :
-    case Pin::Action::servoWrite   :
-    case Pin::Action::pwmWrite     :
-      ::pinMode(pin.number, OUTPUT);
+    case Pin::digitalWrite :
+    case Pin::servoWrite   :
+    case Pin::pwmWrite     :
+      pinMode(pin.getNumber(), OUTPUT);
     break;
   }
 }
 
-void TentacleArduino::digitalWrite(const int pin, const int value){
+void TentacleArduino::digitalWrite(int pin, int value){
   ::digitalWrite(pin, value);
 }
 
-void TentacleArduino::analogWrite(const int pin, const int value){
+void TentacleArduino::analogWrite(int pin, int value){
   ::analogWrite(pin, value);
 }
 
-bool TentacleArduino::digitalRead(const int pin){
+bool TentacleArduino::digitalRead(int pin){
   return ::digitalRead(pin);
 }
 
-int TentacleArduino::analogRead(const int pin){
+int TentacleArduino::analogRead(int pin){
   return ::analogRead(pin);
 }
