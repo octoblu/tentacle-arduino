@@ -3,6 +3,7 @@
 
 TentacleArduino::TentacleArduino() {
   numPins = NUM_DIGITAL_PINS;
+  pins = new Pin[numPins];
 }
 
 void TentacleArduino::setMode(Pin pin){
