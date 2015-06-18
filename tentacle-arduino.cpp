@@ -6,19 +6,19 @@ TentacleArduino::TentacleArduino() {
 }
 
 void TentacleArduino::setMode(const Pin &pin) const {
-  int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
+  int input_mode = (pin.pullup ? INPUT_PULLUP : INPUT );
 
-  switch(pin.getAction()) {
-    case Pin::digitalRead :
-    case Pin::analogRead  :
+  switch(pin.action) {
+    case Pin::Action::digitalRead :
+    case Pin::Action::analogRead  :
     default:
-      ::pinMode(pin.getNumber(), input_mode);
+      ::pinMode(pin.number, input_mode);
     break;
 
-    case Pin::digitalWrite :
-    case Pin::servoWrite   :
-    case Pin::pwmWrite     :
-      ::pinMode(pin.getNumber(), OUTPUT);
+    case Pin::Action::digitalWrite :
+    case Pin::Action::servoWrite   :
+    case Pin::Action::pwmWrite     :
+      ::pinMode(pin.number, OUTPUT);
     break;
   }
 }
