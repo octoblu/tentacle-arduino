@@ -8,9 +8,9 @@
 class TentacleArduino : public Tentacle {
   public:
     TentacleArduino();
-    void setMode(Pin pin);
-    void digitalWrite(int pin, int value);
-    void analogWrite(int pin, int value);
+    Tentacle& setMode(Pin pin);
+    Tentacle& digitalWrite(int pin, int value);
+    Tentacle& analogWrite(int pin, int value);
     bool digitalRead(int pin);
     int analogRead(int pin);
 };

@@ -6,7 +6,7 @@ TentacleArduino::TentacleArduino() {
   pins = new Pin[numPins];
 }
 
-void TentacleArduino::setMode(Pin pin){
+Tentacle& TentacleArduino::setMode(Pin pin){
   int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
 
   switch(pin.getAction()) {
@@ -22,18 +22,25 @@ void TentacleArduino::setMode(Pin pin){
       pinMode(pin.getNumber(), OUTPUT);
     break;
   }
+
+  return *this;
 }
 
-void TentacleArduino::digitalWrite(int pin, int value){
+Tentacle& TentacleArduino::digitalWrite(int pin, int value){
   ::digitalWrite(pin, value);
+
+  return *this;
 }
 
-void TentacleArduino::analogWrite(int pin, int value){
+Tentacle& TentacleArduino::analogWrite(int pin, int value){
   ::analogWrite(pin, value);
+
+  return *this;
 }
 
 bool TentacleArduino::digitalRead(int pin){
   return ::digitalRead(pin);
+
 }
 
 int TentacleArduino::analogRead(int pin){
