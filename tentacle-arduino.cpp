@@ -6,6 +6,15 @@ TentacleArduino::TentacleArduino() {
   pins = new Pin[numPins];
 }
 
+const MeshbluCredentials& TentacleArduino::getCredentials() {
+  const MeshbluCredentials credentials(NULL, NULL);
+  return credentials;
+}
+
+Tentacle& TentacleArduino::setCredentials(const char* uuid, const char* token) {
+  return *this;
+}
+
 Tentacle& TentacleArduino::setMode(Pin pin){
   int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
 

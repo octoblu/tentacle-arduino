@@ -8,6 +8,10 @@
 class TentacleArduino : public Tentacle {
   public:
     TentacleArduino();
+
+    const MeshbluCredentials& getCredentials();
+    Tentacle& setCredentials(const char* uuid, const char* token);
+
     Tentacle& setMode(Pin pin);
     Tentacle& digitalWrite(int pin, int value);
     Tentacle& analogWrite(int pin, int value);
