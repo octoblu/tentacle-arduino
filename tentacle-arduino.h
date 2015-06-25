@@ -3,8 +3,6 @@
 #ifndef tentacle_arduino_h
 #define tentacle_arduino_h
 
-#include "pin.h"
-
 class TentacleArduino : public Tentacle {
   public:
     TentacleArduino();
@@ -12,7 +10,7 @@ class TentacleArduino : public Tentacle {
     const MeshbluCredentials& getCredentials();
     Tentacle& setCredentials(const char* uuid, const char* token);
 
-    Tentacle& setMode(Pin& pin);
+    Tentacle& setMode(int pin, Action action);
     Tentacle& digitalWrite(int pin, int value);
     Tentacle& analogWrite(int pin, int value);
     bool digitalRead(int pin);
