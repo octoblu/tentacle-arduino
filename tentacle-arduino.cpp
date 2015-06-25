@@ -14,42 +14,45 @@ Tentacle& TentacleArduino::setCredentials(const char* uuid, const char* token) {
 }
 
 Tentacle& TentacleArduino::setMode(int number, Action action){
-  int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
 
   switch(action) {
-    case Pin::digitalRead :
-    case Pin::analogRead  :
+    case Action_digitalRead :
+    case Action_analogRead  :
     default:
-      pinMode(number, input_mode);
+      pinMode(number, INPUT);
     break;
 
-    case Pin::digitalWrite :
-    case Pin::servoWrite   :
-    case Pin::pwmWrite     :
-      pinMode(number), OUTPUT);
+    case Action_digitalReadPullup:
+    case Action_analogReadPullup:
+      pinMode(number, INPUT_PULLUP);
+
+    case Action_digitalWrite :
+    case Action_servoWrite   :
+    case Action_pwmWrite     :
+      pinMode(number, OUTPUT);
     break;
   }
 
   return *this;
 }
 
-Tentacle& TentacleArduino::digitalWrite(int pin, int value){
-  ::digitalWrite(pin, value);
+Tentacle& TentacleArduino::digitalWrite(int number, int value){
+  ::digitalWrite(number, value);
 
   return *this;
 }
 
-Tentacle& TentacleArduino::analogWrite(int pin, int value){
-  ::analogWrite(pin, value);
+Tentacle& TentacleArduino::analogWrite(int number, int value){
+  ::analogWrite(number, value);
 
   return *this;
 }
 
-bool TentacleArduino::digitalRead(int pin){
-  return ::digitalRead(pin);
+bool TentacleArduino::digitalRead(int number){
+  return ::digitalRead(number);
 
 }
 
-int TentacleArduino::analogRead(int pin){
-  return ::analogRead(pin);
+int TentacleArduino::analogRead(int number){
+  return ::analogRead(number);
 }

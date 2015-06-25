@@ -10,11 +10,11 @@ class TentacleArduino : public Tentacle {
     const MeshbluCredentials& getCredentials();
     Tentacle& setCredentials(const char* uuid, const char* token);
 
-    Tentacle& setMode(int pin, Action action);
-    Tentacle& digitalWrite(int pin, int value);
-    Tentacle& analogWrite(int pin, int value);
-    bool digitalRead(int pin);
-    int analogRead(int pin);
+    Tentacle& setMode(int number, Action action);
+    Tentacle& digitalWrite(int number, int value);
+    Tentacle& analogWrite(int number, int value);
+    bool digitalRead(int number);
+    int analogRead(int number);
 };
 
 #endif
