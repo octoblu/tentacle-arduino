@@ -1,8 +1,7 @@
 #include "tentacle-arduino.h"
 #include "Arduino.h"
 
-TentacleArduino::TentacleArduino() {
-  numPins = NUM_DIGITAL_PINS;
+TentacleArduino::TentacleArduino() : Tentacle(NUM_DIGITAL_PINS) {
 }
 
 const MeshbluCredentials& TentacleArduino::getCredentials() {

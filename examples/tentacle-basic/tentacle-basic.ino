@@ -10,7 +10,7 @@ void setup() {
 }
 
 void loop() {
-  std::vector<Pin> pins = t.getValue();
+  std::PinBuffer pins = t.getValue();
   for(int i = 0; i < pins.size(); i++) {
     if (i == 3) {
       Pin pin = pins[i];

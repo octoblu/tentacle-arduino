@@ -3,7 +3,7 @@
 #ifndef tentacle_arduino_h
 #define tentacle_arduino_h
 
-#include "pins.hpp"
+#include "pin.h"
 
 class TentacleArduino : public Tentacle {
   public:
