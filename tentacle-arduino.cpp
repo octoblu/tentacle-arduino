@@ -13,20 +13,20 @@ Tentacle& TentacleArduino::setCredentials(const char* uuid, const char* token) {
   return *this;
 }
 
-Tentacle& TentacleArduino::setMode(Pin& pin){
+Tentacle& TentacleArduino::setMode(int number, Action action){
   int input_mode = (pin.getPullup() ? INPUT_PULLUP : INPUT );
 
-  switch(pin.getAction()) {
+  switch(action) {
     case Pin::digitalRead :
     case Pin::analogRead  :
     default:
-      pinMode(pin.getNumber(), input_mode);
+      pinMode(number, input_mode);
     break;
 
     case Pin::digitalWrite :
     case Pin::servoWrite   :
     case Pin::pwmWrite     :
-      pinMode(pin.getNumber(), OUTPUT);
+      pinMode(number), OUTPUT);
     break;
   }
 
