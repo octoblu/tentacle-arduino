@@ -1,5 +1,12 @@
 #include "tentacle-arduino.h"
+// Make library cross-compatiable
+// with Arduino, GNU C++ for tests, and Spark.
+#if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
+#elif defined(SPARK)
+#include "application.h"
+#define NUM_DIGITAL_PINS 18
+#endif
 
 TentacleArduino::TentacleArduino() : Tentacle(NUM_DIGITAL_PINS) {
 }
