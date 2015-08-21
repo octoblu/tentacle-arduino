@@ -28,3 +28,5 @@ linkExternalProject(tentacle-arduino "tentacle")
 linkExternalProject(tentacle-arduino "gtest")
 linkExternalProject(tentacle-arduino "gmock")
 linkExternalProject(tentacle-arduino "arduino-mock")
+
+add_definitions(-DARDUINO=101)
